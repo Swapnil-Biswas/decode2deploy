@@ -695,7 +695,7 @@ export default function HackathonPage() {
                   <Link href="#" className="inline-flex items-center justify-center bg-white text-black hover:bg-neutral-200 font-bold rounded-full px-10 h-14 text-lg transition-transform hover:scale-105">
                     Register Now
                   </Link>
-                  <Link href="#" className="inline-flex items-center justify-center border border-white/20 text-white hover:bg-white/10 font-bold rounded-full px-10 h-14 text-lg transition-transform hover:scale-105 bg-black">
+                  <Link href="https://chat.whatsapp.com/KkXQRuFjlCnCLuYV7G24Vf" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center border border-white/20 text-white hover:bg-white/10 font-bold rounded-full px-10 h-14 text-lg transition-transform hover:scale-105 bg-black">
                     Join Community
                   </Link>
                 </div>
