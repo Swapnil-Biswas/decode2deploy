@@ -19,8 +19,90 @@
   }
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+@keyframes decode-title-sweep {
+  0% {
+    background-position: 180% 50%;
+  }
+
+  55%,
+  100% {
+    background-position: -80% 50%;
+  }
+}
+
+.decode-metal-title,
+.decode-metal-static {
+  position: relative;
+  display: inline-block;
+  color: transparent;
+  background-image:
+    linear-gradient(
+      105deg,
+      #d7dce4 0%,
+      #f4f6f8 18%,
+      #ffffff 36%,
+      #b9c0ca 50%,
+      #ffffff 68%,
+      #aeb6c2 100%
+    );
+  background-size: 220% 100%;
+  background-position: 80% 50%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  text-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.18),
+    0 18px 36px rgba(0, 0, 0, 0.48);
+}
+
+.decode-metal-title {
+  filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.16));
+}
+
+.decode-metal-title::after {
+  position: absolute;
+  inset: 0;
+  content: attr(data-title);
+  color: transparent;
+  background-image:
+    linear-gradient(
+      108deg,
+      transparent 0%,
+      transparent 38%,
+      rgba(255, 255, 255, 0.98) 48%,
+      rgba(255, 255, 255, 0.72) 52%,
+      transparent 62%,
+      transparent 100%
+    );
+  background-size: 240% 100%;
+  background-position: 180% 50%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  text-shadow: none;
+  filter: none;
+  pointer-events: none;
+  animation: decode-title-sweep 5.8s ease-in-out infinite;
+}
+
+.decode-metal-static {
+  background-image:
+    linear-gradient(
+      100deg,
+      #c2c8d1 0%,
+      #ffffff 32%,
+      #d8dce2 54%,
+      #f6f7f9 72%,
+      #a1a9b5 100%
+    );
+  background-size: 100% 100%;
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.12));
 }
