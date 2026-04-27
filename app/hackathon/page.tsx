@@ -641,7 +641,19 @@ export default function HackathonPage() {
                 </div>
 
                 {/* Text */}
-                <h2 className="text-3xl sm:text-4xl font-bold text-white mb-8 tracking-tight">About DevsBazaar</h2>
+                <a href="https://devsbazaar.com/" target="_blank" rel="noopener noreferrer" className="group/heading inline-flex justify-center mb-8">
+                  <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight group-hover/heading:text-cyan-400 group-hover/heading:underline decoration-cyan-400/50 underline-offset-8 transition-all duration-300 flex items-center gap-[0.25em]">
+                    <span className="relative inline-grid overflow-hidden place-items-end py-1">
+                      <span className="col-start-1 row-start-1 transition-transform duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover/heading:translate-y-[120%]">
+                        About
+                      </span>
+                      <span className="col-start-1 row-start-1 -translate-y-[120%] transition-transform duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover/heading:translate-y-0">
+                        Visit
+                      </span>
+                    </span>
+                    <span className="py-1">DevsBazaar</span>
+                  </h2>
+                </a>
                 <p className="text-base sm:text-lg text-white/70 leading-relaxed max-w-3xl mx-auto">
                   DevsBazaar is a full-stack IT solutions company delivering scalable web and software solutions for startups, institutions, and high-value clients globally. We specialize in development, maintenance, and version upgrades of digital platforms, ensuring reliable and future-ready technology systems.
                 </p>
@@ -699,8 +711,8 @@ export default function HackathonPage() {
           <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
             <p>© 2026 CODING CLUB BMSIT&M. All rights reserved.</p>
             <div className="flex gap-6">
-              <a href="#" className="hover:text-white transition-colors">Guidelines</a>
-              <a href="#" className="hover:text-white transition-colors">Code of Conduct</a>
+              <Link href="/guidelines" className="hover:text-white transition-colors">Guidelines</Link>
+              <Link href="/code-of-conduct" className="hover:text-white transition-colors">Code of Conduct</Link>
             </div>
           </div>
         </footer>
