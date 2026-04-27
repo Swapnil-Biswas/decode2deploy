@@ -312,8 +312,8 @@ export default function HackathonPage() {
               </Button>
             </a>
             <a href="#format" className="w-full sm:w-auto">
-              <Button size="lg" variant="outline" className="w-full rounded-full px-8 h-14 text-base border-white/20 text-white hover:bg-white/10 transition-colors">
-                Explore Event
+              <Button size="lg" variant="outline" className="w-full rounded-full px-8 h-14 text-base border-white/20 text-white hover:bg-white/10 transition-all shadow-[0_0_15px_rgba(255,255,255,0.15)] hover:shadow-[0_0_30px_rgba(255,255,255,0.3)]">
+                Explore More <ArrowLeft className="w-4 h-4 ml-2" style={{ transform: "rotate(180deg)" }} />
               </Button>
             </a>
           </motion.div>
@@ -534,11 +534,10 @@ export default function HackathonPage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-end mb-6">
               {PRIZES.slice(0, 3).map((p, i) => (
                 <motion.div key={p.rank} {...fade(i * 0.1)}
-                  className={`group relative rounded-3xl border ${p.border} p-8 bg-gradient-to-b ${p.bg} ${p.glow} ${p.hoverGlow} transition-all duration-300 flex flex-col items-center text-center ${
-                    p.rank === "1st" ? "order-1 md:order-2 md:-mt-8 md:pb-12" : 
-                    p.rank === "2nd" ? "order-2 md:order-1" : 
-                    "order-3 md:order-3"
-                  }`}>
+                  className={`group relative rounded-3xl border ${p.border} p-8 bg-gradient-to-b ${p.bg} ${p.glow} ${p.hoverGlow} transition-all duration-300 flex flex-col items-center text-center ${p.rank === "1st" ? "order-1 md:order-2 md:-mt-8 md:pb-12" :
+                    p.rank === "2nd" ? "order-2 md:order-1" :
+                      "order-3 md:order-3"
+                    }`}>
 
                   {/* Sweep Effect Container */}
                   <div className="absolute inset-0 overflow-hidden rounded-3xl pointer-events-none z-0">
@@ -621,6 +620,40 @@ export default function HackathonPage() {
           </div>
         </section>
 
+        {/* ── ABOUT DEVSBAZAAR ── */}
+        <section id="about-devsbazaar" className="py-24 px-6 bg-white/[0.02] border-y border-white/10 scroll-mt-24">
+          <div className="max-w-4xl mx-auto text-center flex justify-center">
+            <motion.div {...fade()} className="relative overflow-hidden rounded-[2.5rem] bg-[#0A0A0B] p-[2px] w-full group shadow-2xl">
+
+              {/* Rotating Laser Border */}
+              <motion.div
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] sm:w-[200%] aspect-square bg-[conic-gradient(from_0deg,transparent_25%,rgba(255,255,255,1)_50%,transparent_50%,transparent_75%,rgba(255,255,255,1)_100%)] opacity-50 group-hover:opacity-100 transition-opacity duration-500"
+                animate={{ rotate: 360 }}
+                transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+              />
+
+              {/* Inner Content Container */}
+              <div className="relative z-10 bg-[#0A0A0B] rounded-[calc(2.5rem-2px)] p-10 sm:p-16 flex flex-col items-center border border-white/5 backdrop-blur-xl h-full">
+
+                {/* Logo */}
+                <div className="w-32 h-32 sm:w-40 sm:h-40 rounded-[2rem] bg-white/[0.05] border border-white/10 flex items-center justify-center mb-10 shadow-[0_0_40px_-10px_rgba(34,211,238,0.25)] p-3 overflow-hidden">
+                  <img src="/devsbazaar-logo.png" alt="DevsBazaar Logo" className="w-full h-full object-contain drop-shadow-[0_0_20px_rgba(34,211,238,0.4)]" />
+                </div>
+
+                {/* Text */}
+                <h2 className="text-3xl sm:text-4xl font-bold text-white mb-8 tracking-tight">About DevsBazaar</h2>
+                <p className="text-base sm:text-lg text-white/70 leading-relaxed max-w-3xl mx-auto">
+                  DevsBazaar is a full-stack IT solutions company delivering scalable web and software solutions for startups, institutions, and high-value clients globally. We specialize in development, maintenance, and version upgrades of digital platforms, ensuring reliable and future-ready technology systems.
+                </p>
+                <p className="text-base sm:text-lg text-white/70 leading-relaxed max-w-3xl mx-auto mt-6">
+                  Having successfully executed projects worth up to $5,000+ and supported organizations at a national level, DevsBazaar is committed to empowering innovation and supporting the developer community.
+                </p>
+
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
         {/* ── FAQ ── */}
         <section id="faq" className="py-24 px-6 max-w-3xl mx-auto scroll-mt-24">
           <motion.div {...fade()} className="text-center mb-16">
@@ -664,7 +697,7 @@ export default function HackathonPage() {
 
         <footer className="border-t border-white/10 py-10 px-6 text-center text-sm text-white/30">
           <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-            <p>© 2025 DECODE2DEPLOY. All rights reserved.</p>
+            <p>© 2026 CODING CLUB BMSIT&M. All rights reserved.</p>
             <div className="flex gap-6">
               <a href="#" className="hover:text-white transition-colors">Guidelines</a>
               <a href="#" className="hover:text-white transition-colors">Code of Conduct</a>
