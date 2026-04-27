@@ -41,7 +41,7 @@ function CountdownTimer({ targetDate }: { targetDate: string }) {
   useEffect(() => {
     setMounted(true);
     const target = new Date(targetDate).getTime();
-    
+
     const updateTime = () => {
       const now = new Date().getTime();
       const difference = target - now;
@@ -55,7 +55,7 @@ function CountdownTimer({ targetDate }: { targetDate: string }) {
         });
       }
     };
-    
+
     updateTime();
     const interval = setInterval(updateTime, 1000);
     return () => clearInterval(interval);
@@ -217,14 +217,15 @@ const TIMELINE = [
 ];
 
 const PRIZES = [
-  { rank: "2nd", amount: "₹5,000", perks: ["Certificate of Excellence", "Sponsor Goodies", "Internship Referrals"], border: "border-white/10 hover:border-gray-400/30", bg: "from-white/[0.02] to-transparent", hoverGlow: "hover:shadow-[0_0_40px_-15px_rgba(192,192,192,0.4)]", glow: "", sweep: "from-transparent via-gray-400/20 to-transparent" },
-  { rank: "1st", amount: "₹8,000", perks: ["Certificate of Excellence", "Premium Goodies Kit", "Internship Fast-track", "DevsBazaar Mentorship"], border: "border-white/10 hover:border-yellow-500/30", bg: "from-white/[0.05] to-transparent", hoverGlow: "hover:shadow-[0_0_40px_-15px_rgba(255,215,0,0.5)]", glow: "shadow-[0_0_40px_-15px_rgba(255,255,255,0.08)]", sweep: "from-transparent via-yellow-500/20 to-transparent" },
+  { rank: "1st", amount: "₹6,000", perks: ["Certificate of Excellence", "Premium Goodies Kit", "Internship Fast-track", "DevsBazaar Mentorship"], border: "border-white/10 hover:border-yellow-500/30", bg: "from-white/[0.05] to-transparent", hoverGlow: "hover:shadow-[0_0_40px_-15px_rgba(255,215,0,0.5)]", glow: "shadow-[0_0_40px_-15px_rgba(255,255,255,0.08)]", sweep: "from-transparent via-yellow-500/20 to-transparent" },
+  { rank: "2nd", amount: "₹3,000", perks: ["Certificate of Excellence", "Sponsor Goodies", "Internship Referrals"], border: "border-white/10 hover:border-gray-400/30", bg: "from-white/[0.02] to-transparent", hoverGlow: "hover:shadow-[0_0_40px_-15px_rgba(192,192,192,0.4)]", glow: "", sweep: "from-transparent via-gray-400/20 to-transparent" },
   { rank: "3rd", amount: "₹2,000", perks: ["Certificate of Excellence", "Sponsor Goodies", "Community Recognition"], border: "border-white/10 hover:border-orange-600/30", bg: "from-white/[0.02] to-transparent", hoverGlow: "hover:shadow-[0_0_40px_-15px_rgba(205,127,50,0.4)]", glow: "", sweep: "from-transparent via-orange-600/20 to-transparent" },
+  { rank: "Best Innovation", amount: "₹1,000", perks: ["Certificate of Excellence", "Community Spotlight", "Special Mention"], border: "border-white/10 hover:border-cyan-400/30", bg: "from-white/[0.02] to-transparent", hoverGlow: "hover:shadow-[0_0_40px_-15px_rgba(34,211,238,0.4)]", glow: "", sweep: "from-transparent via-cyan-400/20 to-transparent" },
 ];
 
 const STATS = [
   { to: 2, prefix: "", suffix: "", unit: "Days", label: "Immersive challenge", icon: Clock },
-  { to: 15, prefix: "₹", suffix: "K+", unit: "", label: "Total prize pool", icon: Trophy },
+  { to: 12, prefix: "₹", suffix: "K+", unit: "", label: "Total prize pool", icon: Trophy },
   { to: 200, prefix: "", suffix: "+", unit: "", label: "Expected participants", icon: Users },
   { to: 50, prefix: "", suffix: "", unit: "", label: "Final merged teams", icon: Code2 },
 ];
@@ -282,7 +283,7 @@ export default function HackathonPage() {
 
       <div className="relative z-10">
         {/* ── HERO ── */}
-        <section id="overview" className="flex flex-col items-center justify-center text-center px-4 pt-24 pb-20 sm:pt-32 sm:pb-24 min-h-[85vh] scroll-mt-24">
+        <section id="overview" className="relative flex flex-col items-center justify-center text-center px-4 pt-24 pb-20 sm:pt-32 sm:pb-24 min-h-[85vh] scroll-mt-24">
           <motion.div {...fade(0)} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/20 bg-white/5 mb-8 text-xs font-semibold tracking-widest text-white/80 uppercase">
             <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
             2-Day Hackathon · BMSIT&amp;M, Bengaluru
@@ -313,6 +314,20 @@ export default function HackathonPage() {
             <a href="#format" className="w-full sm:w-auto">
               <Button size="lg" variant="outline" className="w-full rounded-full px-8 h-14 text-base border-white/20 text-white hover:bg-white/10 transition-colors">
                 Explore Event
+              </Button>
+            </a>
+          </motion.div>
+
+          {/* DevsBazaar Floating Box */}
+          <motion.div
+            {...fade(0.5)}
+            className="flex flex-col mt-16 lg:mt-0 lg:absolute lg:bottom-8 lg:right-8 p-6 rounded-2xl bg-white/[0.03] border border-white/10 backdrop-blur-md w-full max-w-[300px] lg:max-w-[260px] text-left shadow-2xl transition-all hover:bg-white/[0.05] hover:border-white/20"
+          >
+            <h3 className="text-sm font-bold text-white mb-2">Powered by DevsBazaar</h3>
+            <p className="text-xs text-white/50 mb-4 leading-relaxed">Discover more about our community, upcoming events, and tech opportunities.</p>
+            <a href="https://devsbazaar.com/" target="_blank" rel="noopener noreferrer">
+              <Button size="sm" className="w-full bg-white/10 hover:bg-white/20 text-white border-none transition-all text-xs font-semibold rounded-full h-9">
+                Visit DevsBazaar
               </Button>
             </a>
           </motion.div>
@@ -376,12 +391,12 @@ export default function HackathonPage() {
                       <span className="text-white/50">50 Teams</span>
                     </div>
                     <div className="h-2 w-full bg-white/10 rounded-full overflow-hidden">
-                      <motion.div 
+                      <motion.div
                         initial={{ width: 0 }}
                         whileInView={{ width: "33.333333%" }}
                         transition={{ duration: 1.5, ease: "easeOut" }}
                         viewport={{ once: true }}
-                        className="h-full bg-white/40 rounded-full" 
+                        className="h-full bg-white/40 rounded-full"
                       />
                     </div>
                   </div>
@@ -391,12 +406,12 @@ export default function HackathonPage() {
                       <span className="text-white/50">2 Duos Combine</span>
                     </div>
                     <div className="h-2 w-full bg-white/10 rounded-full overflow-hidden">
-                      <motion.div 
+                      <motion.div
                         initial={{ width: 0 }}
                         whileInView={{ width: "66.666667%" }}
                         transition={{ duration: 1.5, ease: "easeOut", delay: 0.2 }}
                         viewport={{ once: true }}
-                        className="h-full bg-white/60 rounded-full" 
+                        className="h-full bg-white/60 rounded-full"
                       />
                     </div>
                   </div>
@@ -406,12 +421,12 @@ export default function HackathonPage() {
                       <span className="text-white font-semibold">50 Teams of 4</span>
                     </div>
                     <div className="h-2 w-full bg-white/10 rounded-full overflow-hidden">
-                      <motion.div 
+                      <motion.div
                         initial={{ width: 0 }}
                         whileInView={{ width: "100%" }}
                         transition={{ duration: 1.5, ease: "easeOut", delay: 0.4 }}
                         viewport={{ once: true }}
-                        className="h-full bg-white rounded-full" 
+                        className="h-full bg-white rounded-full"
                       />
                     </div>
                   </div>
@@ -513,20 +528,24 @@ export default function HackathonPage() {
           <div className="max-w-5xl mx-auto">
             <motion.div {...fade()} className="text-center mb-16">
               <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">Rewards & Recognition</h2>
-              <p className="text-lg text-white/50 max-w-2xl mx-auto">₹15,000+ total prize pool alongside exclusive mentorship, internship referrals, and community recognition.</p>
+              <p className="text-lg text-white/50 max-w-2xl mx-auto">₹12,000+ total prize pool alongside exclusive mentorship, internship referrals, and community recognition.</p>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-end mb-12">
-              {PRIZES.map((p, i) => (
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-end mb-6">
+              {PRIZES.slice(0, 3).map((p, i) => (
                 <motion.div key={p.rank} {...fade(i * 0.1)}
-                  className={`group relative rounded-3xl border ${p.border} p-8 bg-gradient-to-b ${p.bg} ${p.glow} ${p.hoverGlow} transition-all duration-300 ${i === 1 ? "md:-mt-8 md:pb-12" : ""} flex flex-col items-center text-center`}>
-                  
+                  className={`group relative rounded-3xl border ${p.border} p-8 bg-gradient-to-b ${p.bg} ${p.glow} ${p.hoverGlow} transition-all duration-300 flex flex-col items-center text-center ${
+                    p.rank === "1st" ? "order-1 md:order-2 md:-mt-8 md:pb-12" : 
+                    p.rank === "2nd" ? "order-2 md:order-1" : 
+                    "order-3 md:order-3"
+                  }`}>
+
                   {/* Sweep Effect Container */}
                   <div className="absolute inset-0 overflow-hidden rounded-3xl pointer-events-none z-0">
                     <div className={`absolute inset-0 -translate-x-[150%] skew-x-[-30deg] bg-gradient-to-r ${p.sweep} transition-transform duration-700 ease-out group-hover:translate-x-[150%]`} />
                   </div>
 
-                  {i === 1 && (
+                  {p.rank === "1st" && (
                     <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full text-xs font-bold bg-white text-black uppercase tracking-widest shadow-lg z-10">
                       Grand Prize
                     </div>
@@ -543,6 +562,28 @@ export default function HackathonPage() {
                 </motion.div>
               ))}
             </div>
+
+            <motion.div {...fade(0.3)} className="flex justify-center mb-12">
+              {PRIZES.slice(3).map((p) => (
+                <div key={p.rank} className={`w-full max-w-sm group relative rounded-3xl border ${p.border} p-8 bg-gradient-to-b ${p.bg} ${p.glow} ${p.hoverGlow} transition-all duration-300 flex flex-col items-center text-center`}>
+                  <div className="absolute inset-0 overflow-hidden rounded-3xl pointer-events-none z-0">
+                    <div className={`absolute inset-0 -translate-x-[150%] skew-x-[-30deg] bg-gradient-to-r ${p.sweep} transition-transform duration-700 ease-out group-hover:translate-x-[150%]`} />
+                  </div>
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full text-xs font-bold bg-cyan-400 text-black uppercase tracking-widest shadow-lg z-10">
+                    Special Award
+                  </div>
+                  <div className="relative z-10 text-sm text-white/40 font-semibold uppercase tracking-widest mb-2 mt-4">{p.rank}</div>
+                  <div className="relative z-10 text-4xl font-extrabold text-white mb-6">{p.amount}</div>
+                  <ul className="relative z-10 space-y-3 text-left w-full border-t border-white/10 pt-6 mt-auto">
+                    {p.perks.map((pk) => (
+                      <li key={pk} className="flex items-start gap-3 text-sm text-white/60">
+                        <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" /> {pk}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </motion.div>
 
             <motion.div {...fade(0.3)} className="text-center">
               <p className="text-white/40 text-sm">Plus Special Mentions for standout projects and track winners.</p>
