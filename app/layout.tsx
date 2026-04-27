@@ -15,9 +15,6 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Decode2Deploy",
   description: "A two-day immersive tech challenge. Decode hidden problems. Build impactful solutions.",
-  icons: {
-    icon: "/output-onlinepngtools.png",
-  },
 };
 
 export default function RootLayout({
