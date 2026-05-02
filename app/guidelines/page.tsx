@@ -18,8 +18,7 @@ export default function GuidelinesPage() {
       title: "Team Formation & Eligibility",
       icon: <Users className="w-6 h-6 text-cyan-400" />,
       rules: [
-        "Teams must consist of exactly 1 to 4 members.",
-        "Cross-college teams are permitted provided all members are actively enrolled students.",
+        "Teams must consist of exactly 2 members.",
         "Each participant can only be part of one single team."
       ]
     },
@@ -57,7 +56,7 @@ export default function GuidelinesPage() {
     <div className="min-h-screen bg-black text-white selection:bg-cyan-500/30 overflow-hidden relative">
       <StarsBackground />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(34,211,238,0.05),transparent_50%)] pointer-events-none" />
-      
+
       <div className="relative z-10 max-w-4xl mx-auto px-6 py-24 sm:py-32">
         {/* Navigation */}
         <motion.div {...fade()} className="mb-12">
@@ -85,7 +84,7 @@ export default function GuidelinesPage() {
         {/* Guidelines List */}
         <div className="space-y-8">
           {guidelines.map((section, idx) => (
-            <motion.div key={section.title} {...fade(0.1 * (idx + 2))} 
+            <motion.div key={section.title} {...fade(0.1 * (idx + 2))}
               className="p-8 sm:p-10 rounded-3xl border border-white/10 bg-white/[0.02] backdrop-blur-md shadow-xl transition-colors hover:bg-white/[0.04]">
               <div className="flex items-center gap-4 mb-6">
                 <div className="w-12 h-12 rounded-2xl bg-white/[0.05] border border-white/10 flex items-center justify-center shadow-inner">
