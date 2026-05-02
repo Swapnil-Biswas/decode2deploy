@@ -302,7 +302,7 @@ export default function HackathonPage() {
           </motion.p>
 
           <motion.div {...fade(0.35)}>
-            <CountdownTimer targetDate="2026-05-11T00:00:00+05:30" />
+            <CountdownTimer targetDate="2026-05-18T00:00:00+05:30" />
           </motion.div>
 
           <motion.div {...fade(0.4)} className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
