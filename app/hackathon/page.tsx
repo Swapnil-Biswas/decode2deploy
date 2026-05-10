@@ -257,9 +257,9 @@ const TIMELINE = [
 ];
 
 const PRIZES = [
-  { rank: "1st", amount: "₹6,000", perks: ["Certificate of Excellence", "Premium Goodies Kit", "Internship Fast-track", "DevsBazaar Mentorship"], border: "border-white/10 hover:border-yellow-500/30", bg: "from-white/[0.05] to-transparent", hoverGlow: "hover:shadow-[0_0_40px_-15px_rgba(255,215,0,0.5)]", glow: "shadow-[0_0_40px_-15px_rgba(255,255,255,0.08)]", sweep: "from-transparent via-yellow-500/20 to-transparent" },
-  { rank: "2nd", amount: "₹3,000", perks: ["Certificate of Excellence", "Sponsor Goodies", "Internship Referrals"], border: "border-white/10 hover:border-gray-400/30", bg: "from-white/[0.02] to-transparent", hoverGlow: "hover:shadow-[0_0_40px_-15px_rgba(192,192,192,0.4)]", glow: "", sweep: "from-transparent via-gray-400/20 to-transparent" },
-  { rank: "3rd", amount: "₹2,000", perks: ["Certificate of Excellence", "Sponsor Goodies", "Community Recognition"], border: "border-white/10 hover:border-orange-600/30", bg: "from-white/[0.02] to-transparent", hoverGlow: "hover:shadow-[0_0_40px_-15px_rgba(205,127,50,0.4)]", glow: "", sweep: "from-transparent via-orange-600/20 to-transparent" },
+  { rank: "1st", amount: "₹6,000", perks: ["Certificate of Excellence", "Internship Fast-track", "DevsBazaar Mentorship"], border: "border-white/10 hover:border-yellow-500/30", bg: "from-white/[0.05] to-transparent", hoverGlow: "hover:shadow-[0_0_40px_-15px_rgba(255,215,0,0.5)]", glow: "shadow-[0_0_40px_-15px_rgba(255,255,255,0.08)]", sweep: "from-transparent via-yellow-500/20 to-transparent" },
+  { rank: "2nd", amount: "₹3,000", perks: ["Certificate of Excellence", "Internship Referrals"], border: "border-white/10 hover:border-gray-400/30", bg: "from-white/[0.02] to-transparent", hoverGlow: "hover:shadow-[0_0_40px_-15px_rgba(192,192,192,0.4)]", glow: "", sweep: "from-transparent via-gray-400/20 to-transparent" },
+  { rank: "3rd", amount: "₹2,000", perks: ["Certificate of Excellence", "Community Recognition"], border: "border-white/10 hover:border-orange-600/30", bg: "from-white/[0.02] to-transparent", hoverGlow: "hover:shadow-[0_0_40px_-15px_rgba(205,127,50,0.4)]", glow: "", sweep: "from-transparent via-orange-600/20 to-transparent" },
   { rank: "Best Innovation", amount: "₹1,000", perks: ["Certificate of Excellence", "Community Spotlight", "Special Mention"], border: "border-white/10 hover:border-cyan-400/30", bg: "from-white/[0.02] to-transparent", hoverGlow: "hover:shadow-[0_0_40px_-15px_rgba(34,211,238,0.4)]", glow: "", sweep: "from-transparent via-cyan-400/20 to-transparent" },
 ];
 
@@ -592,9 +592,7 @@ export default function HackathonPage() {
               ))}
             </motion.div>
 
-            <motion.div {...fade(0.3)} className="text-center">
-              <p className="text-white/40 text-sm">Plus Special Mentions for standout projects and track winners.</p>
-            </motion.div>
+
           </div>
         </section>
         {/* ── INTERNSHIP OPPORTUNITY ── */}
@@ -724,13 +722,15 @@ export default function HackathonPage() {
 
               <div className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-12">
                 <div className="flex flex-col items-center group">
-                  <span className="text-xs font-semibold text-white/40 uppercase tracking-wider mb-1">Anmol Narayan</span>
+                  <span className="text-xs font-semibold text-white/50 uppercase tracking-wider">Anmol Narayan</span>
+                  <span className="text-[10px] font-medium text-cyan-500/70 uppercase tracking-widest mb-1">(President)</span>
                   <a href="tel:+919876543210" className="text-lg font-mono font-medium text-white group-hover:text-cyan-400 transition-colors">+91 72668 99255</a>
                 </div>
                 <div className="hidden sm:block w-px h-10 bg-white/10" />
                 <div className="w-16 h-px bg-white/10 sm:hidden" />
                 <div className="flex flex-col items-center group">
-                  <span className="text-xs font-semibold text-white/40 uppercase tracking-wider mb-1">Alok Verma</span>
+                  <span className="text-xs font-semibold text-white/50 uppercase tracking-wider">Alok Verma</span>
+                  <span className="text-[10px] font-medium text-cyan-500/70 uppercase tracking-widest mb-1">(Operation Head)</span>
                   <a href="tel:+919876543211" className="text-lg font-mono font-medium text-white group-hover:text-cyan-400 transition-colors">+91 77598 19223</a>
                 </div>
               </div>
