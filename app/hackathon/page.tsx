@@ -4,6 +4,7 @@ import { motion, useInView, animate, AnimatePresence, useScroll, useTransform } 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { StarsBackground } from "@/components/ui/stars-background";
+import { NotificationPopup } from "@/components/ui/notification";
 import { Button } from "@/components/ui/button";
 import {
   Calendar, MapPin, Users, Trophy, Code2, Cpu,
@@ -37,22 +38,29 @@ function Counter({ from = 0, to, duration = 2, prefix = "", suffix = "" }: { fro
 function CountdownTimer({ targetDate }: { targetDate: string }) {
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
   const [mounted, setMounted] = useState(false);
+  const [status, setStatus] = useState<"upcoming" | "ongoing" | "completed">("upcoming");
 
   useEffect(() => {
     setMounted(true);
     const target = new Date(targetDate).getTime();
+    const end = target + 2 * 24 * 60 * 60 * 1000; // 2 days later
 
     const updateTime = () => {
       const now = new Date().getTime();
       const difference = target - now;
 
       if (difference > 0) {
+        setStatus("upcoming");
         setTimeLeft({
           days: Math.floor(difference / (1000 * 60 * 60 * 24)),
           hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
           minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
           seconds: Math.floor((difference % (1000 * 60)) / 1000)
         });
+      } else if (now < end) {
+        setStatus("ongoing");
+      } else {
+        setStatus("completed");
       }
     };
 
@@ -71,6 +79,43 @@ function CountdownTimer({ targetDate }: { targetDate: string }) {
           </div>
         ))}
       </div>
+    );
+  }
+
+  if (status === "ongoing") {
+    return (
+      <motion.div
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        className="flex items-center justify-center mt-2 mb-12"
+      >
+        <div className="px-8 py-5 sm:px-12 sm:py-6 rounded-2xl bg-cyan-500/[0.05] border border-cyan-500/30 backdrop-blur-md shadow-[0_0_40px_-10px_rgba(34,211,238,0.2)]">
+          <div className="text-xl sm:text-3xl font-extrabold text-white tracking-wider uppercase flex items-center gap-4">
+            <span className="relative flex h-3 w-3 sm:h-4 sm:w-4">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-3 w-3 sm:h-4 sm:w-4 bg-cyan-500 shadow-[0_0_15px_rgba(34,211,238,1)]"></span>
+            </span>
+            <span className="bg-gradient-to-r from-white to-white/70 bg-clip-text text-transparent">Hackathon Ongoing</span>
+          </div>
+        </div>
+      </motion.div>
+    );
+  }
+
+  if (status === "completed") {
+    return (
+      <motion.div
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        className="flex items-center justify-center mt-2 mb-12"
+      >
+        <div className="px-8 py-5 sm:px-12 sm:py-6 rounded-2xl bg-white/[0.02] border border-white/10 backdrop-blur-md">
+          <div className="text-xl sm:text-3xl font-extrabold text-white/80 tracking-wider uppercase flex items-center gap-4">
+            <Trophy className="w-6 h-6 sm:w-8 sm:h-8 text-yellow-500/80 drop-shadow-[0_0_15px_rgba(234,179,8,0.3)]" />
+            <span>Hackathon Concluded</span>
+          </div>
+        </div>
+      </motion.div>
     );
   }
 
@@ -190,12 +235,7 @@ const TIMELINE = [
     icon: Lightbulb,
     desc: "An exclusive open floor with DevsBazaar seniors. Ask anything about career paths, startup culture, and how to stand out in the tech industry."
   },
-  {
-    label: "Team Merge & Icebreakers",
-    date: "Day 1 — Engage & Explore",
-    icon: UserPlus,
-    desc: "Duo teams combine into squads of 4! Quick icebreakers to sync up."
-  },
+
   {
     label: "Debug Challenge (1 Hour)",
     date: "Day 1 — Engage & Explore",
@@ -227,19 +267,19 @@ const STATS = [
   { to: 2, prefix: "", suffix: "", unit: "Days", label: "Immersive challenge", icon: Clock },
   { to: 12, prefix: "₹", suffix: "K+", unit: "", label: "Total prize pool", icon: Trophy },
   { to: 200, prefix: "", suffix: "+", unit: "", label: "Expected participants", icon: Users },
-  { to: 50, prefix: "", suffix: "", unit: "", label: "Final merged teams", icon: Code2 },
+  { to: 50, prefix: "", suffix: "", unit: "", label: "Final teams", icon: Code2 },
 ];
 
 const OBJECTIVES = [
   { icon: Search, title: "Decode Signals", desc: "Analyze ambiguous real-world signals and messy clues to uncover hidden requirements." },
   { icon: Lightbulb, title: "Identify Problems", desc: "Pinpoint core product problems before writing a single line of code." },
-  { icon: Workflow, title: "Think Like PMs", desc: "Adopt the mindset of product managers and engineers to design viable features." },
+  { icon: Workflow, title: "Think Like Product Managers", desc: "Adopt the mindset of product managers and engineers to design viable features." },
   { icon: Code2, title: "Build Scalable Solutions", desc: "Execute practical, scalable solutions and deploy them for live evaluation." },
 ];
 
 const FAQ = [
   { q: "Do I need to be an expert coder?", a: "No, beginners are completely welcome. The event is focused on problem-solving, collaboration, and learning." },
-  { q: "Can I participate alone?", a: "You must register in a team of 2. During the event, we will merge your duo with another to form a complete team of 4." },
+  { q: "Can I participate alone?", a: "You must register in a team of 3-4 members." },
   { q: "What should I bring?", a: "Bring your laptop, charger, student ID, and enthusiasm!" },
   { q: "Is this online or offline?", a: "This is a 100% offline, immersive experience held on the BMSIT campus." },
 ];
@@ -255,6 +295,7 @@ export default function HackathonPage() {
 
   return (
     <div className="relative min-h-screen bg-black text-white font-sans selection:bg-white/20">
+      <NotificationPopup />
       <StarsBackground />
 
       {/* Very subtle refined gradients for a professional look */}
@@ -273,7 +314,7 @@ export default function HackathonPage() {
                 className="hover:text-white transition-colors">{s}</a>
             ))}
           </nav>
-          <a href="#register">
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSfx74aB9jGOHn5nxjtHyBBE553pP_Ksms3gip5vrJxgke5pNg/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer">
             <Button className="bg-white text-black hover:bg-white/90 text-sm font-semibold rounded-full px-6 h-9 transition-transform hover:scale-105">
               Register Now
             </Button>
@@ -286,7 +327,7 @@ export default function HackathonPage() {
         <section id="overview" className="relative flex flex-col items-center justify-center text-center px-4 pt-24 pb-20 sm:pt-32 sm:pb-24 min-h-[85vh] scroll-mt-24">
           <motion.div {...fade(0)} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/20 bg-white/5 mb-8 text-xs font-semibold tracking-widest text-white/80 uppercase">
             <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
-            2-Day Hackathon · BMSIT&amp;M, Bengaluru
+            2-Day Technical Event · BMSIT&amp;M, Bengaluru
           </motion.div>
 
           <motion.h1 {...fade(0.1)} className="text-[clamp(2.5rem,8vw,6.5rem)] font-extrabold uppercase leading-[0.95] tracking-tight pb-6 max-w-5xl text-transparent bg-clip-text bg-gradient-to-b from-white to-white/60">
@@ -306,7 +347,7 @@ export default function HackathonPage() {
           </motion.div>
 
           <motion.div {...fade(0.4)} className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-            <a href="#register" className="w-full sm:w-auto">
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfx74aB9jGOHn5nxjtHyBBE553pP_Ksms3gip5vrJxgke5pNg/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
               <Button size="lg" className="w-full bg-white text-black hover:bg-neutral-200 font-semibold rounded-full px-10 h-14 text-base transition-transform hover:scale-105">
                 Register Now <ArrowLeft className="w-4 h-4 ml-2 rotate-135" style={{ transform: "rotate(135deg)" }} />
               </Button>
@@ -376,66 +417,33 @@ export default function HackathonPage() {
 
             <motion.div {...fade(0.3)} className="bg-white/[0.03] border border-white/10 rounded-3xl p-8 sm:p-10 relative overflow-hidden">
               <div className="absolute top-0 right-0 w-64 h-64 bg-white/[0.02] rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-              <div>
+              <div className="relative z-10 flex flex-col h-full justify-center">
                 <div className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest text-white/60 uppercase mb-6">
-                  <Users className="w-4 h-4" /> Participation Model
+                  <Shield className="w-4 h-4" /> Confidential
                 </div>
-                <h3 className="text-2xl font-bold text-white mb-4">Duo to Squad Merge</h3>
+                <h3 className="text-2xl font-bold text-white mb-4">Problem Statement</h3>
                 <p className="text-white/60 mb-8 text-sm leading-relaxed">
-                  Collaboration is at the core of this challenge. Register with a partner, and prepare to adapt.
+                  The true challenge will remain hidden until the second day of the hackathon. Decode the signals.
                 </p>
-                <div className="space-y-6">
-                  <div className="flex flex-col gap-2">
-                    <div className="flex justify-between text-sm">
-                      <span className="text-white/80 font-medium">1. Register as a Duo</span>
-                      <span className="text-white/50">50 Teams</span>
-                    </div>
-                    <div className="h-2 w-full bg-white/10 rounded-full overflow-hidden">
-                      <motion.div
-                        initial={{ width: 0 }}
-                        whileInView={{ width: "33.333333%" }}
-                        transition={{ duration: 1.5, ease: "easeOut" }}
-                        viewport={{ once: true }}
-                        className="h-full bg-white/40 rounded-full"
-                      />
-                    </div>
+
+                <div className="relative group w-full p-6 rounded-2xl bg-black/40 border border-white/5 overflow-hidden">
+                  <div className="blur-[6px] select-none opacity-40 font-mono text-xs sm:text-sm text-left break-all h-32 overflow-hidden flex flex-col gap-2 transition-all duration-500 group-hover:blur-md">
+                    <p>0x48656c6c6f20576f726c64212054686973206973206120736563726574206d6573736167652e204465636f646520697420696620796f752063616e2e</p>
+                    <p>U29tZSBvZiB0aGUgYmVzdCBzb2x1dGlvbnMgYXJlIGhpZGRlbiBpbiBwbGFpbiBzaWdodC4=</p>
+                    <p>eW91IGFyZSBub3Qgc3VwcG9zZWQgdG8gcmVhZCB0aGlzIHlldC4gV2FpdCBmb3IgdGhlIGhhY2thdGhvbiE=</p>
+                    <p>4a 75 73 74 20 6b 69 64 64 69 6e 67 2c 20 6b 65 65 70 20 6c 6f 6f 6b 69 6e 67 2e</p>
                   </div>
-                  <div className="flex flex-col gap-2">
-                    <div className="flex justify-between text-sm">
-                      <span className="text-white/80 font-medium">2. The Merge (Icebreaker Test)</span>
-                      <span className="text-white/50">2 Duos Combine</span>
-                    </div>
-                    <div className="h-2 w-full bg-white/10 rounded-full overflow-hidden">
-                      <motion.div
-                        initial={{ width: 0 }}
-                        whileInView={{ width: "66.666667%" }}
-                        transition={{ duration: 1.5, ease: "easeOut", delay: 0.2 }}
-                        viewport={{ once: true }}
-                        className="h-full bg-white/60 rounded-full"
-                      />
-                    </div>
+
+                  <div className="absolute inset-0 flex items-center justify-center bg-black/20 backdrop-blur-[2px]">
+                    <motion.div
+                      whileHover={{ y: -12 }}
+                      whileTap={{ y: -12 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                      className="flex flex-col items-center justify-center p-5 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 cursor-pointer shadow-[0_0_30px_-5px_rgba(255,255,255,0.2)] hover:bg-white/15"
+                    >
+                      <Lock className="w-8 h-8 text-white" />
+                    </motion.div>
                   </div>
-                  <div className="flex flex-col gap-2">
-                    <div className="flex justify-between text-sm">
-                      <span className="text-white font-semibold">3. Final Squad Formed</span>
-                      <span className="text-white font-semibold">50 Teams of 4</span>
-                    </div>
-                    <div className="h-2 w-full bg-white/10 rounded-full overflow-hidden">
-                      <motion.div
-                        initial={{ width: 0 }}
-                        whileInView={{ width: "100%" }}
-                        transition={{ duration: 1.5, ease: "easeOut", delay: 0.4 }}
-                        viewport={{ once: true }}
-                        className="h-full bg-white rounded-full"
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div className="mt-8 p-4 rounded-xl bg-white/5 border border-white/10 flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-white/80 shrink-0" />
-                  <p className="text-sm text-white/70">
-                    The merge happens before Round 1. Your adaptability and collaboration skills will be tested immediately.
-                  </p>
                 </div>
               </div>
             </motion.div>
@@ -689,12 +697,12 @@ export default function HackathonPage() {
               <div className="relative z-10">
                 <h2 className="text-4xl sm:text-5xl font-extrabold text-white mb-6 tracking-tight">Ready to Decode?</h2>
                 <p className="text-lg text-white/60 mb-10 max-w-xl mx-auto">
-                  Registrations for duo teams will open soon. Secure your spot in the ultimate 2-day product building challenge.
+                  Registrations for teams (3-4 members) will open soon. Secure your spot in the ultimate 2-day product building challenge.
                 </p>
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                  <Link href="#" className="inline-flex items-center justify-center bg-white text-black hover:bg-neutral-200 font-bold rounded-full px-10 h-14 text-lg transition-transform hover:scale-105">
+                  <a href="https://docs.google.com/forms/d/e/1FAIpQLSfx74aB9jGOHn5nxjtHyBBE553pP_Ksms3gip5vrJxgke5pNg/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center bg-white text-black hover:bg-neutral-200 font-bold rounded-full px-10 h-14 text-lg transition-transform hover:scale-105">
                     Register Now
-                  </Link>
+                  </a>
                   <Link href="https://chat.whatsapp.com/KkXQRuFjlCnCLuYV7G24Vf" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center border border-white/20 text-white hover:bg-white/10 font-bold rounded-full px-10 h-14 text-lg transition-transform hover:scale-105 bg-black">
                     Join Community
                   </Link>
@@ -707,6 +715,28 @@ export default function HackathonPage() {
           </div>
         </section>
 
+        {/* ── CONTACT US ── */}
+        <section className="pb-24 px-6">
+          <div className="max-w-2xl mx-auto text-center">
+            <motion.div {...fade()} className="p-8 rounded-3xl border border-white/10 bg-white/[0.02] backdrop-blur-sm transition-all duration-300 hover:bg-white/[0.04] hover:border-white/20 hover:shadow-[0_0_30px_-10px_rgba(255,255,255,0.05)]">
+              <h3 className="text-xl sm:text-2xl font-bold text-white mb-2">Need Help? Contact Us</h3>
+              <p className="text-sm text-white/50 mb-8">Reach out to our organizing team for any queries regarding the event.</p>
+
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-12">
+                <div className="flex flex-col items-center group">
+                  <span className="text-xs font-semibold text-white/40 uppercase tracking-wider mb-1">Anmol Narayan</span>
+                  <a href="tel:+919876543210" className="text-lg font-mono font-medium text-white group-hover:text-cyan-400 transition-colors">+91 72668 99255</a>
+                </div>
+                <div className="hidden sm:block w-px h-10 bg-white/10" />
+                <div className="w-16 h-px bg-white/10 sm:hidden" />
+                <div className="flex flex-col items-center group">
+                  <span className="text-xs font-semibold text-white/40 uppercase tracking-wider mb-1">Alok Verma</span>
+                  <a href="tel:+919876543211" className="text-lg font-mono font-medium text-white group-hover:text-cyan-400 transition-colors">+91 77598 19223</a>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </section>
         <footer className="border-t border-white/10 py-10 px-6 text-center text-sm text-white/30">
           <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
             <p>© 2026 CODING CLUB BMSIT&M. All rights reserved.</p>

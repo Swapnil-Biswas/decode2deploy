@@ -18,7 +18,7 @@ export default function GuidelinesPage() {
       title: "Team Formation & Eligibility",
       icon: <Users className="w-6 h-6 text-cyan-400" />,
       rules: [
-        "Teams must consist of exactly 2 members.",
+        "Teams can consist of 3 - 4 members.",
         "Each participant can only be part of one single team."
       ]
     },
@@ -37,17 +37,17 @@ export default function GuidelinesPage() {
       rules: [
         "Projects must be submitted before the countdown ends. Late submissions will not be accepted.",
         "A public GitHub repository link containing the source code is mandatory.",
-        "A 3-minute video demonstration or a deployed live link is highly recommended for evaluation."
+        "A deployed live link is highly recommended for evaluation."
       ]
     },
     {
       title: "Evaluation Criteria",
       icon: <Lightbulb className="w-6 h-6 text-emerald-400" />,
       rules: [
-        "Innovation & Creativity (25%)",
-        "Technical Complexity & Implementation (25%)",
-        "Design & User Experience (25%)",
-        "Real-world Viability & Impact (25%)"
+        "Insight Quality (40%)",
+        "Technical Correctness (25%)",
+        "Cost Efficiency (20%)",
+        "UI - UX (15%)"
       ]
     }
   ];
