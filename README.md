@@ -1,8 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Decode2Deploy 🚀
 
-## Getting Started
+**Decode2Deploy** is an immersive two-day technical event organized by the **Coding Club BMSIT&M**, powered by **DevsBazaar**. It's not just a hackathon—it's a product-building challenge where participants decode ambiguous real-world signals, build scalable solutions, and deploy them under intense pressure.
 
-First, run the development server:
+This repository contains the Next.js source code for the official Decode2Deploy landing page and event website.
+
+## 🌟 Key Features
+
+- **Cinematic UI/UX**: Built with a sleek, dark-mode-first glassmorphic design language.
+- **Interactive Animations**: Powered by Framer Motion, featuring floating components, starry backgrounds, bouncing locks, and smooth scroll animations.
+- **Dynamic Event Notification System**: Sequential, time-aware animated notifications for registrations and sponsor spotlights.
+- **Live Event Countdown**: Real-time timer counting down to the event launch.
+- **Responsive Design**: Carefully optimized for mobile, tablet, and desktop viewing.
+
+## 🛠️ Tech Stack
+
+- **Framework**: [Next.js](https://nextjs.org/) (App Router, v15+)
+- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/)
+- **Animations**: [Framer Motion](https://www.framer.com/motion/)
+- **Icons**: [Lucide React](https://lucide.dev/)
+- **Analytics**: Vercel Analytics
+
+## 📂 Project Structure
+
+```text
+├── app/
+│   ├── layout.tsx              # Root layout & global fonts (Geist)
+│   ├── page.tsx                # Main Landing Page
+│   ├── hackathon/page.tsx      # Core Event Page (Timeline, FAQs, Tracks, CTA)
+│   ├── guidelines/page.tsx     # Event Rules, Team Formation (3-4 members), Evaluation Criteria
+│   └── code-of-conduct/page.tsx# Official Event Code of Conduct
+├── components/
+│   └── ui/
+│       ├── button.tsx          # Reusable Button Component
+│       ├── notification.tsx    # Sequential Animated Popups
+│       └── stars-background.tsx# Cinematic particle background
+└── public/                     # Static assets & logos
+```
+
+## 🚀 Getting Started
+
+First, ensure you have Node.js installed. Then, clone the repository and install the dependencies:
+
+```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+```
+
+Run the development server:
 
 ```bash
 npm run dev
@@ -10,27 +57,24 @@ npm run dev
 yarn dev
 # or
 pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📅 Event Overview
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Format**: 2-Day Offline Event
+- **Location**: BMSIT&M, Bengaluru
+- **Team Size**: 3-4 Members
+- **Key Focus**: Problem decoding, rapid prototyping, and scalable deployment.
 
-## Learn More
+## 🤝 Community & Support
 
-To learn more about Next.js, take a look at the following resources:
+- **Organized By**: Coding Club BMSIT&M
+- **Powered By**: [DevsBazaar](https://devsbazaar.com/)
+- **Support Contact**: Reach out to the organizing team via the details listed on the Hackathon page.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📜 License
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+© 2026 CODING CLUB BMSIT&M. All rights reserved.
+Made by Swapnil Biswas.
