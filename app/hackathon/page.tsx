@@ -298,6 +298,30 @@ export default function HackathonPage() {
       <NotificationPopup />
       <StarsBackground />
 
+      {/* Floating Clues Trigger */}
+      <Link href="/clues" className="fixed z-50 flex items-center justify-center transition-all duration-300 group
+        /* Mobile: Bottom Left FAB */
+        bottom-6 left-4 sm:left-6 w-12 h-12 rounded-full
+        bg-cyan-950/40 border border-cyan-500/30 text-cyan-50 backdrop-blur-xl shadow-[0_0_20px_rgba(34,211,238,0.15)]
+        /* Desktop: Left Center Vertical */
+        md:bottom-auto md:w-auto md:h-auto md:left-0 md:top-1/2 md:-translate-y-1/2 md:flex-col md:gap-3 
+        md:rounded-r-2xl md:rounded-l-none md:px-2 md:py-5 md:border-l-0 
+        md:bg-white/[0.03] md:border-white/10 md:text-white/50 md:shadow-none
+        /* Hover Effects */
+        hover:text-cyan-400 hover:bg-white/[0.08] hover:border-cyan-500/30 hover:shadow-[0_0_30px_rgba(34,211,238,0.15)]
+      ">
+        <Search className="w-5 h-5 group-hover:scale-110 group-hover:drop-shadow-[0_0_8px_rgba(34,211,238,0.8)] transition-all" />
+        
+        {/* Desktop Text Only */}
+        <span className="hidden md:flex flex-col items-center text-[10px] sm:text-xs font-extrabold tracking-[0.2em] leading-[1.2]">
+          <span>C</span>
+          <span>L</span>
+          <span>U</span>
+          <span>E</span>
+          <span>S</span>
+        </span>
+      </Link>
+
       {/* Very subtle refined gradients for a professional look */}
       <div className="fixed inset-0 z-[1] pointer-events-none bg-[radial-gradient(circle_at_50%_0%,rgba(255,255,255,0.03),transparent_70%)]" />
 
