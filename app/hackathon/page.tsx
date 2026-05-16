@@ -464,6 +464,7 @@ export default function HackathonPage() {
 
                   <div className="absolute inset-0 flex items-center justify-center bg-black/20 backdrop-blur-[2px]">
                     <motion.div
+                      onClick={() => window.history.pushState({}, '', '/hackathon/token=LOCK-796')}
                       whileHover={{ y: -12 }}
                       whileTap={{ y: -12 }}
                       transition={{ type: "spring", stiffness: 400, damping: 10 }}
