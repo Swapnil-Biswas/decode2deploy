@@ -109,10 +109,18 @@ function CountdownTimer({ targetDate }: { targetDate: string }) {
         animate={{ opacity: 1, scale: 1 }}
         className="flex items-center justify-center mt-2 mb-12"
       >
-        <div className="px-8 py-5 sm:px-12 sm:py-6 rounded-2xl bg-white/[0.02] border border-white/10 backdrop-blur-md">
-          <div className="text-xl sm:text-3xl font-extrabold text-white/80 tracking-wider uppercase flex items-center gap-4">
-            <Trophy className="w-6 h-6 sm:w-8 sm:h-8 text-yellow-500/80 drop-shadow-[0_0_15px_rgba(234,179,8,0.3)]" />
-            <span>Hackathon Concluded</span>
+        <div className="relative group px-8 py-5 sm:px-12 sm:py-6 rounded-2xl bg-gradient-to-br from-yellow-500/[0.08] to-transparent border border-yellow-500/30 backdrop-blur-md shadow-[0_0_40px_-10px_rgba(234,179,8,0.25)] overflow-hidden">
+          {/* Subtle animated sweep */}
+          <motion.div
+            animate={{ x: ["-100%", "200%"] }}
+            transition={{ repeat: Infinity, duration: 4, ease: "linear" }}
+            className="absolute inset-0 w-1/2 bg-gradient-to-r from-transparent via-yellow-500/10 to-transparent -skew-x-12"
+          />
+          <div className="relative text-xl sm:text-3xl font-extrabold tracking-wider uppercase flex items-center gap-4">
+            <Trophy className="w-6 h-6 sm:w-8 sm:h-8 text-yellow-400 drop-shadow-[0_0_15px_rgba(250,204,21,0.6)]" />
+            <span className="bg-gradient-to-r from-white via-yellow-200 to-yellow-500 bg-clip-text text-transparent drop-shadow-[0_0_10px_rgba(250,204,21,0.2)]">
+              Hackathon Concluded
+            </span>
           </div>
         </div>
       </motion.div>
@@ -338,11 +346,9 @@ export default function HackathonPage() {
                 className="hover:text-white transition-colors">{s}</a>
             ))}
           </nav>
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLSfx74aB9jGOHn5nxjtHyBBE553pP_Ksms3gip5vrJxgke5pNg/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer">
-            <Button className="bg-white text-black hover:bg-white/90 text-sm font-semibold rounded-full px-6 h-9 transition-transform hover:scale-105">
-              Register Now
-            </Button>
-          </a>
+          <Button disabled className="bg-white/20 text-white/50 cursor-not-allowed text-sm font-semibold rounded-full px-6 h-9">
+            Registration Closed
+          </Button>
         </div>
       </header>
 
@@ -371,11 +377,9 @@ export default function HackathonPage() {
           </motion.div>
 
           <motion.div {...fade(0.4)} className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfx74aB9jGOHn5nxjtHyBBE553pP_Ksms3gip5vrJxgke5pNg/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
-              <Button size="lg" className="w-full bg-white text-black hover:bg-neutral-200 font-semibold rounded-full px-10 h-14 text-base transition-transform hover:scale-105">
-                Register Now <ArrowLeft className="w-4 h-4 ml-2 rotate-135" style={{ transform: "rotate(135deg)" }} />
-              </Button>
-            </a>
+            <Button disabled size="lg" className="w-full sm:w-auto bg-white/10 text-white/50 cursor-not-allowed font-semibold rounded-full px-10 h-14 text-base">
+              Registration Closed
+            </Button>
             <a href="#format" className="w-full sm:w-auto">
               <Button size="lg" variant="outline" className="w-full rounded-full px-8 h-14 text-base border-white/20 text-white hover:bg-white/10 transition-all shadow-[0_0_15px_rgba(255,255,255,0.15)] hover:shadow-[0_0_30px_rgba(255,255,255,0.3)]">
                 Explore More <ArrowLeft className="w-4 h-4 ml-2" style={{ transform: "rotate(180deg)" }} />
@@ -717,14 +721,14 @@ export default function HackathonPage() {
               className="group relative rounded-[2.5rem] border border-white/20 p-12 sm:p-20 bg-black overflow-hidden shadow-2xl transition-all duration-500 hover:border-white/40 hover:shadow-[0_0_80px_-15px_rgba(255,255,255,0.15)] hover:-translate-y-1">
               <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.08),transparent_50%)] group-hover:bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.15),transparent_50%)] transition-all duration-500" />
               <div className="relative z-10">
-                <h2 className="text-4xl sm:text-5xl font-extrabold text-white mb-6 tracking-tight">Ready to Decode?</h2>
+                <h2 className="text-4xl sm:text-5xl font-extrabold text-white mb-6 tracking-tight">Registrations Closed</h2>
                 <p className="text-lg text-white/60 mb-10 max-w-xl mx-auto">
-                  Registrations for teams (3-4 members) will open soon. Secure your spot in the ultimate 2-day product building challenge.
+                  Registrations for DECODE2DEPLOY are now closed. Thank you for the overwhelming response! You can still join our community.
                 </p>
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                  <a href="https://docs.google.com/forms/d/e/1FAIpQLSfx74aB9jGOHn5nxjtHyBBE553pP_Ksms3gip5vrJxgke5pNg/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center bg-white text-black hover:bg-neutral-200 font-bold rounded-full px-10 h-14 text-lg transition-transform hover:scale-105">
-                    Register Now
-                  </a>
+                  <span className="inline-flex items-center justify-center bg-white/10 text-white/50 cursor-not-allowed font-bold rounded-full px-10 h-14 text-lg">
+                    Registration Closed
+                  </span>
                   <Link href="https://chat.whatsapp.com/KkXQRuFjlCnCLuYV7G24Vf" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center border border-white/20 text-white hover:bg-white/10 font-bold rounded-full px-10 h-14 text-lg transition-transform hover:scale-105 bg-black">
                     Join Community
                   </Link>

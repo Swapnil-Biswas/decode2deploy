@@ -14,14 +14,12 @@ export function NotificationPopup() {
     const now = new Date().getTime();
 
     if (now < cutoffDate) {
-      // 1. Show register notification at 0.5s
-      const t1 = setTimeout(() => setActiveNotif('register'), 500);
-      // 2. Switch to DevsBazaar notification at 6.0s (gives 5s for first + 0.5s transition)
-      const t2 = setTimeout(() => setActiveNotif('devsbazaar'), 6000);
-      // 3. Hide completely at 11.5s
-      const t3 = setTimeout(() => setActiveNotif('none'), 11500);
+      // 1. Show DevsBazaar notification at 0.5s
+      const t1 = setTimeout(() => setActiveNotif('devsbazaar'), 500);
+      // 2. Hide completely at 6.0s
+      const t2 = setTimeout(() => setActiveNotif('none'), 6000);
 
-      timersRef.current = [t1, t2, t3];
+      timersRef.current = [t1, t2];
 
       return () => {
         timersRef.current.forEach(clearTimeout);
@@ -92,14 +90,11 @@ export function NotificationPopup() {
                 <p className="text-[11px] sm:text-xs text-white/70 leading-relaxed sm:leading-relaxed mb-2.5 sm:mb-3">
                   Registrations are open, register as soon as possible to secure your spot.
                 </p>
-                <a 
-                  href="https://docs.google.com/forms/d/e/1FAIpQLSfx74aB9jGOHn5nxjtHyBBE553pP_Ksms3gip5vrJxgke5pNg/viewform?usp=publish-editor" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="inline-block pointer-events-auto text-[10px] sm:text-xs font-bold text-black bg-white px-3 sm:px-4 py-1 sm:py-1.5 rounded-full hover:bg-neutral-200 transition-colors"
+                <span 
+                  className="inline-block text-[10px] sm:text-xs font-bold text-white/50 bg-white/10 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full cursor-not-allowed"
                 >
-                  Register Now
-                </a>
+                  Registration Closed
+                </span>
               </div>
             </div>
           </div>
