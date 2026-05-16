@@ -373,18 +373,18 @@ export default function HackathonPage() {
           </motion.p>
 
           <motion.div {...fade(0.35)}>
-            <CountdownTimer targetDate="2026-05-18T00:00:00+05:30" />
+            <CountdownTimer targetDate="2026-05-18T09:00:00+05:30" />
           </motion.div>
 
           <motion.div {...fade(0.4)} className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
             <Button disabled size="lg" className="w-full sm:w-auto bg-white/10 text-white/50 cursor-not-allowed font-semibold rounded-full px-10 h-14 text-base">
               Registration Closed
             </Button>
-            <a href="#format" className="w-full sm:w-auto">
-              <Button size="lg" variant="outline" className="w-full rounded-full px-8 h-14 text-base border-white/20 text-white hover:bg-white/10 transition-all shadow-[0_0_15px_rgba(255,255,255,0.15)] hover:shadow-[0_0_30px_rgba(255,255,255,0.3)]">
+            <Button asChild size="lg" variant="outline" className="w-full sm:w-auto rounded-full px-8 h-14 text-base border-white/20 text-white hover:bg-white/10 transition-all shadow-[0_0_15px_rgba(255,255,255,0.15)] hover:shadow-[0_0_30px_rgba(255,255,255,0.3)]">
+              <a href="#format">
                 Explore More <ArrowLeft className="w-4 h-4 ml-2" style={{ transform: "rotate(180deg)" }} />
-              </Button>
-            </a>
+              </a>
+            </Button>
           </motion.div>
 
           {/* DevsBazaar Floating Box */}
@@ -394,11 +394,11 @@ export default function HackathonPage() {
           >
             <h3 className="text-sm font-bold text-white mb-2">Powered by DevsBazaar</h3>
             <p className="text-xs text-white/50 mb-4 leading-relaxed">Discover more about our community, upcoming events, and tech opportunities.</p>
-            <a href="https://devsbazaar.com/" target="_blank" rel="noopener noreferrer">
-              <Button size="sm" className="w-full bg-white/10 hover:bg-white/20 text-white border-none transition-all text-xs font-semibold rounded-full h-9">
+            <Button asChild size="sm" className="w-full bg-white/10 hover:bg-white/20 text-white border-none transition-all text-xs font-semibold rounded-full h-9">
+              <a href="https://devsbazaar.com/" target="_blank" rel="noopener noreferrer">
                 Visit DevsBazaar
-              </Button>
-            </a>
+              </a>
+            </Button>
           </motion.div>
         </section>
 
@@ -542,11 +542,11 @@ export default function HackathonPage() {
                             <div className={`mt-4 p-4 rounded-lg bg-violet-500/5 border border-violet-500/20 ${isEven ? "sm:text-right" : "text-left"} text-left`}>
                               <p className="text-xs font-bold text-violet-400 mb-2 tracking-wide uppercase">{ev.extraTitle}</p>
                               <p className="text-xs text-white/50 leading-relaxed mb-4">{ev.extraDesc}</p>
-                              <a href="https://looksgoodtomeow.in/" target="_blank" rel="noopener noreferrer">
-                                <Button size="sm" className="bg-violet-500 hover:bg-violet-600 text-white border-none text-xs font-bold px-4 h-8 rounded-full transition-all duration-300 hover:shadow-[0_0_15px_rgba(139,92,246,0.5)] hover:scale-105">
+                              <Button asChild size="sm" className="bg-violet-500 hover:bg-violet-600 text-white border-none text-xs font-bold px-4 h-8 rounded-full transition-all duration-300 hover:shadow-[0_0_15px_rgba(139,92,246,0.5)] hover:scale-105">
+                                <a href="https://looksgoodtomeow.in/" target="_blank" rel="noopener noreferrer">
                                   Try Beta Now
-                                </Button>
-                              </a>
+                                </a>
+                              </Button>
                             </div>
                           )}
                         </div>
