@@ -179,7 +179,7 @@ function ScrollToTop() {
   );
 }
 
-function FAQItem({ q, a, index }: { q: string; a: string; index: number }) {
+function FAQItem({ q, a, index }: { q: string; a: any; index: number }) {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <motion.div {...fade(index * 0.05)}
@@ -290,6 +290,7 @@ const FAQ = [
   { q: "Can I participate alone?", a: "You must register in a team of 3-4 members." },
   { q: "What should I bring?", a: "Bring your laptop, charger, student ID, and enthusiasm!" },
   { q: "Is this online or offline?", a: "This is a 100% offline, immersive experience held on the BMSIT campus." },
+  { q: "Looking for this?", a: <>Go here - <a href="https://github.com/Swapnil-Biswas/fushia-landing" target="_blank" rel="noopener noreferrer" className="text-cyan-400 hover:underline" onClick={(e) => e.stopPropagation()}>https://github.com/Swapnil-Biswas/fushia-landing</a></> },
 ];
 
 export default function HackathonPage() {
