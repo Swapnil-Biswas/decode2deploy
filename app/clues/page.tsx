@@ -53,11 +53,8 @@ export default function CluesPage() {
         >
           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-cyan-500 via-purple-500 to-cyan-500 opacity-100 shadow-[0_0_20px_rgba(34,211,238,1)] md:opacity-50 md:shadow-none md:group-hover:opacity-100 md:group-hover:shadow-[0_0_20px_rgba(34,211,238,1)] transition-all duration-300" />
           <p className="text-lg sm:text-xl text-white/70 leading-relaxed font-medium">
-            You are here <span className="text-cyan-400 font-bold">way too early</span>... <br className="hidden sm:block" />
-            At least wait for the event to start before hunting for clues!
-          </p>
-          <p className="mt-4 text-sm text-white/40 italic">
-            (But hey, we admire the enthusiasm. +10 aura points for dedication.)
+            You shouldn&apos;t be here now... <br className="hidden sm:block" />
+            work ongoing 🔨
           </p>
         </motion.div>
 
