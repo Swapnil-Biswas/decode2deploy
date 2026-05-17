@@ -39,13 +39,13 @@ export function NotificationPopup() {
     setActiveNotif('none');
   };
 
-  const handleDragEndRegister = (event: any, info: PanInfo) => {
+  const handleDragEndRegister = (event: unknown, info: PanInfo) => {
     if (info.offset.x > 30 || info.velocity.x > 150) {
       dismissRegister();
     }
   };
 
-  const handleDragEndDevsBazaar = (event: any, info: PanInfo) => {
+  const handleDragEndDevsBazaar = (event: unknown, info: PanInfo) => {
     if (info.offset.x > 30 || info.velocity.x > 150) {
       dismissDevsBazaar();
     }

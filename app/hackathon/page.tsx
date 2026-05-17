@@ -2,14 +2,14 @@
 
 import { motion, useInView, animate, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, ReactNode } from "react";
 import { StarsBackground } from "@/components/ui/stars-background";
 import { NotificationPopup } from "@/components/ui/notification";
 import { Button } from "@/components/ui/button";
 import {
-  Calendar, MapPin, Users, Trophy, Code2, Cpu,
+  Users, Trophy, Code2,
   Globe, Lock, Rocket, ArrowLeft, Clock,
-  Zap, Star, Smartphone, ChevronDown, CheckCircle2, Shield, Search, Lightbulb, UserPlus, Workflow, ArrowUp, Plus
+  Zap, Star, CheckCircle2, Shield, Search, Lightbulb, Workflow, ArrowUp, Plus
 } from "lucide-react";
 
 function Counter({ from = 0, to, duration = 2, prefix = "", suffix = "" }: { from?: number, to: number, duration?: number, prefix?: string, suffix?: string }) {
@@ -41,6 +41,7 @@ function CountdownTimer({ targetDate }: { targetDate: string }) {
   const [status, setStatus] = useState<"upcoming" | "ongoing" | "completed">("upcoming");
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
     const target = new Date(targetDate).getTime();
     const end = target + 2 * 24 * 60 * 60 * 1000; // 2 days later
@@ -179,7 +180,7 @@ function ScrollToTop() {
   );
 }
 
-function FAQItem({ q, a, index }: { q: string; a: any; index: number }) {
+function FAQItem({ q, a, index }: { q: string; a: ReactNode; index: number }) {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <motion.div {...fade(index * 0.05)}
@@ -294,6 +295,31 @@ const FAQ = [
 ];
 
 export default function HackathonPage() {
+  const [isRedirecting, setIsRedirecting] = useState(false);
+  const [loadingText, setLoadingText] = useState("");
+
+  const handleCluesClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setIsRedirecting(true);
+    
+    const phrases = ["Initiating secure connection...", "Bypassing firewalls...", "Establishing encrypted tunnel...", "Transferring to Secure Space..."];
+    let phraseIndex = 0;
+    
+    setLoadingText(phrases[0]);
+    
+    const interval = setInterval(() => {
+      phraseIndex++;
+      if (phraseIndex < phrases.length) {
+        setLoadingText(phrases[phraseIndex]);
+      }
+    }, 600);
+    
+    setTimeout(() => {
+      clearInterval(interval);
+      window.location.href = "https://d2dround1.onrender.com/";
+    }, 2800);
+  };
+
   const timelineRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: timelineRef,
@@ -304,11 +330,54 @@ export default function HackathonPage() {
 
   return (
     <div className="relative min-h-screen bg-black text-white font-sans selection:bg-white/20">
+      <AnimatePresence>
+        {isRedirecting && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-black backdrop-blur-xl"
+          >
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(34,211,238,0.15),transparent_50%)]" />
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ delay: 0.2 }}
+              className="relative z-10 flex flex-col items-center"
+            >
+              <div className="w-24 h-24 mb-8 relative flex items-center justify-center">
+                <motion.div
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                  className="absolute inset-0 rounded-full border-t-2 border-r-2 border-cyan-400 border-opacity-50"
+                />
+                <motion.div
+                  animate={{ rotate: -360 }}
+                  transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
+                  className="absolute inset-2 rounded-full border-b-2 border-l-2 border-fuchsia-500 border-opacity-50"
+                />
+                <Lock className="w-8 h-8 text-cyan-400" />
+              </div>
+              <h2 className="text-xl md:text-2xl font-mono font-bold text-cyan-400 tracking-widest uppercase mb-4 text-center">
+                {loadingText}
+              </h2>
+              <div className="w-64 h-1 bg-white/10 rounded-full overflow-hidden mt-4">
+                <motion.div
+                  initial={{ width: "0%" }}
+                  animate={{ width: "100%" }}
+                  transition={{ duration: 2.5, ease: "easeInOut" }}
+                  className="h-full bg-cyan-400 shadow-[0_0_10px_rgba(34,211,238,0.8)]"
+                />
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
       <NotificationPopup />
       <StarsBackground />
 
       {/* Floating Clues Trigger */}
-      <Link href="/clues" className="fixed z-50 flex items-center justify-center transition-all duration-300 group
+      <button onClick={handleCluesClick} className="fixed z-50 flex items-center justify-center transition-all duration-300 group
         /* Mobile: Bottom Left FAB */
         bottom-6 left-4 sm:left-6 w-12 h-12 rounded-full
         bg-cyan-950/40 border border-cyan-500/30 text-cyan-50 backdrop-blur-xl shadow-[0_0_20px_rgba(34,211,238,0.15)]
@@ -329,7 +398,7 @@ export default function HackathonPage() {
           <span>E</span>
           <span>S</span>
         </span>
-      </Link>
+      </button>
 
       {/* Very subtle refined gradients for a professional look */}
       <div className="fixed inset-0 z-[1] pointer-events-none bg-[radial-gradient(circle_at_50%_0%,rgba(255,255,255,0.03),transparent_70%)]" />
@@ -673,6 +742,7 @@ export default function HackathonPage() {
 
                 {/* Logo */}
                 <div className="w-32 h-32 sm:w-40 sm:h-40 rounded-[2rem] bg-white/[0.05] border border-white/10 flex items-center justify-center mb-10 shadow-[0_0_40px_-10px_rgba(34,211,238,0.25)] p-3 overflow-hidden">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src="/devsbazaar-logo.png" alt="DevsBazaar Logo" className="w-full h-full object-contain drop-shadow-[0_0_20px_rgba(34,211,238,0.4)]" />
                 </div>
 

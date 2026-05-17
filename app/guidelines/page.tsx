@@ -111,7 +111,7 @@ export default function GuidelinesPage() {
             <div>
               <h3 className="text-xl font-bold text-white mb-2">Zero Tolerance Policy</h3>
               <p className="text-white/60 leading-relaxed">
-                Plagiarism, copying another team's code, or submitting pre-built full projects will result in immediate disqualification. We strictly monitor commits and project integrity.
+                Plagiarism, copying another team&apos;s code, or submitting pre-built full projects will result in immediate disqualification. We strictly monitor commits and project integrity.
               </p>
             </div>
           </div>
