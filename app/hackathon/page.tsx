@@ -295,31 +295,6 @@ const FAQ = [
 ];
 
 export default function HackathonPage() {
-  const [isRedirecting, setIsRedirecting] = useState(false);
-  const [loadingText, setLoadingText] = useState("");
-
-  const handleCluesClick = (e: React.MouseEvent) => {
-    e.preventDefault();
-    setIsRedirecting(true);
-    
-    const phrases = ["Initiating secure connection...", "Bypassing firewalls...", "Establishing encrypted tunnel...", "Transferring to Secure Space..."];
-    let phraseIndex = 0;
-    
-    setLoadingText(phrases[0]);
-    
-    const interval = setInterval(() => {
-      phraseIndex++;
-      if (phraseIndex < phrases.length) {
-        setLoadingText(phrases[phraseIndex]);
-      }
-    }, 600);
-    
-    setTimeout(() => {
-      clearInterval(interval);
-      window.location.href = "https://d2dround1.onrender.com/";
-    }, 2800);
-  };
-
   const timelineRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: timelineRef,
@@ -330,54 +305,11 @@ export default function HackathonPage() {
 
   return (
     <div className="relative min-h-screen bg-black text-white font-sans selection:bg-white/20">
-      <AnimatePresence>
-        {isRedirecting && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-black backdrop-blur-xl"
-          >
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(34,211,238,0.15),transparent_50%)]" />
-            <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ delay: 0.2 }}
-              className="relative z-10 flex flex-col items-center"
-            >
-              <div className="w-24 h-24 mb-8 relative flex items-center justify-center">
-                <motion.div
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                  className="absolute inset-0 rounded-full border-t-2 border-r-2 border-cyan-400 border-opacity-50"
-                />
-                <motion.div
-                  animate={{ rotate: -360 }}
-                  transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
-                  className="absolute inset-2 rounded-full border-b-2 border-l-2 border-fuchsia-500 border-opacity-50"
-                />
-                <Lock className="w-8 h-8 text-cyan-400" />
-              </div>
-              <h2 className="text-xl md:text-2xl font-mono font-bold text-cyan-400 tracking-widest uppercase mb-4 text-center">
-                {loadingText}
-              </h2>
-              <div className="w-64 h-1 bg-white/10 rounded-full overflow-hidden mt-4">
-                <motion.div
-                  initial={{ width: "0%" }}
-                  animate={{ width: "100%" }}
-                  transition={{ duration: 2.5, ease: "easeInOut" }}
-                  className="h-full bg-cyan-400 shadow-[0_0_10px_rgba(34,211,238,0.8)]"
-                />
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
       <NotificationPopup />
       <StarsBackground />
 
       {/* Floating Clues Trigger */}
-      <button onClick={handleCluesClick} className="fixed z-50 flex items-center justify-center transition-all duration-300 group
+      <a href="https://d2dround1.onrender.com/" target="_blank" rel="noopener noreferrer" className="fixed z-50 flex items-center justify-center transition-all duration-300 group
         /* Mobile: Bottom Left FAB */
         bottom-6 left-4 sm:left-6 w-12 h-12 rounded-full
         bg-cyan-950/40 border border-cyan-500/30 text-cyan-50 backdrop-blur-xl shadow-[0_0_20px_rgba(34,211,238,0.15)]
@@ -398,7 +330,7 @@ export default function HackathonPage() {
           <span>E</span>
           <span>S</span>
         </span>
-      </button>
+      </a>
 
       {/* Very subtle refined gradients for a professional look */}
       <div className="fixed inset-0 z-[1] pointer-events-none bg-[radial-gradient(circle_at_50%_0%,rgba(255,255,255,0.03),transparent_70%)]" />
