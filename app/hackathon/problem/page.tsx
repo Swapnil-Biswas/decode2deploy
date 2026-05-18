@@ -64,47 +64,6 @@ export default function ProblemStatementPage() {
           </div>
         </motion.div>
 
-        {/* What to Build */}
-        <motion.div {...fade(0.3)} className="mb-16">
-          <h2 className="flex items-center gap-3 text-2xl font-bold text-white mb-8 px-2">
-            <Target className="w-6 h-6 text-emerald-400" />
-            What to Build
-          </h2>
-          <div className="grid gap-4">
-            {[
-              {
-                title: "Repo Ingestion",
-                desc: "Walk a public repo's history, parse with tree-sitter, build per-commit code graphs (nodes: files/classes/functions; edges: imports/calls/references)."
-              },
-              {
-                title: "Health Score",
-                desc: "Composite with ≥4 explainable subscores: complexity drift, test coverage, hotspot risk (churn × complexity), dependency rot."
-              },
-              {
-                title: "Time-Series Dashboard",
-                desc: "Health trend annotated per PR; clicking a dip explains why it dropped."
-              },
-              {
-                title: "Knowledge Graph Diff",
-                desc: "Compare any two commits, show what changed structurally."
-              },
-              {
-                title: "Hotspot Map",
-                desc: "The \"where bugs live\" heatmap."
-              }
-            ].map((item, i) => (
-              <div key={i} className="flex flex-col sm:flex-row gap-6 p-6 sm:p-8 rounded-2xl bg-white/[0.01] border border-white/5 hover:bg-white/[0.03] hover:border-white/10 transition-all group">
-                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 font-bold text-xl shadow-[0_0_15px_rgba(16,185,129,0)] group-hover:shadow-[0_0_20px_rgba(16,185,129,0.2)] transition-shadow">
-                  {i + 1}
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-white mb-3 group-hover:text-emerald-300 transition-colors">{item.title}</h3>
-                  <p className="text-white/60 text-lg leading-relaxed">{item.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </motion.div>
 
         {/* Constraints */}
         <motion.div {...fade(0.4)} className="mb-16 p-8 sm:p-10 rounded-3xl bg-red-950/20 border border-red-500/20 backdrop-blur-sm relative overflow-hidden group">
