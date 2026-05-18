@@ -8,7 +8,7 @@ import { NotificationPopup } from "@/components/ui/notification";
 import { Button } from "@/components/ui/button";
 import {
   Users, Trophy, Code2,
-  Globe, Lock, Rocket, ArrowLeft, Clock,
+  Globe, Lock, Unlock, Rocket, ArrowLeft, Clock,
   Zap, Star, CheckCircle2, Shield, Search, Lightbulb, Workflow, ArrowUp, Plus
 } from "lucide-react";
 
@@ -445,36 +445,26 @@ export default function HackathonPage() {
               </div>
             </motion.div>
 
-            <motion.div {...fade(0.3)} className="bg-white/[0.03] border border-white/10 rounded-3xl p-8 sm:p-10 relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-white/[0.02] rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+            <motion.div {...fade(0.3)} className="bg-cyan-500/[0.03] border border-cyan-500/20 rounded-3xl p-8 sm:p-10 relative overflow-hidden shadow-[0_0_40px_-15px_rgba(34,211,238,0.15)] transition-all hover:bg-cyan-500/[0.05] hover:border-cyan-500/40 hover:shadow-[0_0_60px_-15px_rgba(34,211,238,0.3)]">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-500/[0.05] rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
               <div className="relative z-10 flex flex-col h-full justify-center">
-                <div className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest text-white/60 uppercase mb-6">
-                  <Shield className="w-4 h-4" /> Confidential
+                <div className="inline-flex items-center gap-2 text-xs font-bold tracking-widest text-cyan-400 uppercase mb-6">
+                  <Unlock className="w-4 h-4" /> Decrypted & Unlocked
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-4">Problem Statement</h3>
                 <p className="text-white/60 mb-8 text-sm leading-relaxed">
-                  The true challenge will remain hidden until the second day of the hackathon. Decode the signals.
+                  The wait is over. The true challenge has been decrypted and unlocked. Gather your team and start building.
                 </p>
 
-                <div className="relative group w-full p-6 rounded-2xl bg-black/40 border border-white/5 overflow-hidden">
-                  <div className="blur-[6px] select-none opacity-40 font-mono text-xs sm:text-sm text-left break-all h-32 overflow-hidden flex flex-col gap-2 transition-all duration-500 group-hover:blur-md">
-                    <p>0x48656c6c6f20576f726c64212054686973206973206120736563726574206d6573736167652e204465636f646520697420696620796f752063616e2e</p>
-                    <p>U29tZSBvZiB0aGUgYmVzdCBzb2x1dGlvbnMgYXJlIGhpZGRlbiBpbiBwbGFpbiBzaWdodC4=</p>
-                    <p>eW91IGFyZSBub3Qgc3VwcG9zZWQgdG8gcmVhZCB0aGlzIHlldC4gV2FpdCBmb3IgdGhlIGhhY2thdGhvbiE=</p>
-                    <p>4a 75 73 74 20 6b 69 64 64 69 6e 67 2c 20 6b 65 65 70 20 6c 6f 6f 6b 69 6e 67 2e</p>
-                  </div>
-
-                  <div className="absolute inset-0 flex items-center justify-center bg-black/20 backdrop-blur-[2px]">
-                    <motion.div
-                      onClick={() => window.history.pushState({}, '', '/hackathon/token=LOCK-796')}
-                      whileHover={{ y: -12 }}
-                      whileTap={{ y: -12 }}
-                      transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                      className="flex flex-col items-center justify-center p-5 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 cursor-pointer shadow-[0_0_30px_-5px_rgba(255,255,255,0.2)] hover:bg-white/15"
-                    >
-                      <Lock className="w-8 h-8 text-white" />
-                    </motion.div>
-                  </div>
+                <div className="relative group w-full p-8 rounded-2xl bg-cyan-950/20 border border-cyan-500/20 overflow-hidden flex flex-col items-center justify-center min-h-[160px]">
+                  <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(34,211,238,0.15),transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  
+                  <Link href="/hackathon/problem" target="_blank" className="relative z-10 flex min-h-[3.5rem] h-auto w-fit mx-auto active:scale-95 transition overflow-hidden rounded-full p-[1px] focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 focus:ring-offset-slate-50 shadow-[0_0_20px_-5px_rgba(34,211,238,0.5)]">
+                    <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#0891b2_0%,#22d3ee_50%,#0891b2_100%)]" />
+                    <span className="flex-1 inline-flex w-full cursor-pointer items-center justify-center rounded-full bg-black px-6 sm:px-8 py-3 sm:py-2 text-center text-sm sm:text-base font-bold text-white backdrop-blur-3xl transition-colors hover:bg-black/80">
+                      Access Problem Statement
+                    </span>
+                  </Link>
                 </div>
               </div>
             </motion.div>
