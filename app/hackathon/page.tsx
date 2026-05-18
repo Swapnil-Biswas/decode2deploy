@@ -309,7 +309,7 @@ export default function HackathonPage() {
       <StarsBackground />
 
       {/* Floating Clues Trigger */}
-      <Link href="/clues" className="fixed z-50 flex items-center justify-center transition-all duration-300 group
+      <Link href="https://d2dround1.onrender.com/" target="_blank" rel="noopener noreferrer" className="fixed z-50 flex items-center justify-center transition-all duration-300 group
         /* Mobile: Bottom Left FAB */
         bottom-6 left-4 sm:left-6 w-12 h-12 rounded-full
         bg-cyan-950/40 border border-cyan-500/30 text-cyan-50 backdrop-blur-xl shadow-[0_0_20px_rgba(34,211,238,0.15)]
