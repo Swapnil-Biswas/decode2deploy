@@ -389,26 +389,44 @@ export default function HackathonPage() {
             </Button>
           </motion.div>
 
-          {/* Results Floating Box */}
-          <motion.div
-            {...fade(0.5)}
-            className="flex flex-col mt-4 lg:mt-0 lg:absolute lg:bottom-8 lg:left-8 p-6 rounded-2xl bg-cyan-950/40 border border-cyan-500/30 backdrop-blur-md w-full max-w-[300px] lg:max-w-[260px] text-left shadow-[0_0_30px_rgba(34,211,238,0.15)] transition-all hover:bg-cyan-900/40 hover:border-cyan-400/50"
-          >
-            <div className="inline-flex items-center gap-2 text-[10px] font-bold tracking-widest text-cyan-400 uppercase mb-2">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
-              </span>
-              New Update
-            </div>
-            <h3 className="text-sm font-bold text-white mb-2">Round 1 results announced</h3>
-            <p className="text-xs text-white/70 mb-4 leading-relaxed">Check if your team made it to the next phase of the hackathon.</p>
-            <Button asChild size="sm" className="w-full bg-cyan-500 hover:bg-cyan-400 text-black border-none transition-all text-xs font-bold rounded-full h-9 shadow-[0_0_15px_rgba(34,211,238,0.4)] hover:shadow-[0_0_25px_rgba(34,211,238,0.6)]">
-              <Link href="/hackathon/results">
-                View Results
-              </Link>
-            </Button>
-          </motion.div>
+          {/* Notifications Container */}
+          <div className="flex flex-col gap-4 mt-4 lg:mt-0 lg:absolute lg:bottom-8 lg:left-8 w-full max-w-[300px] lg:max-w-[260px] z-20">
+            
+            {/* Round 2 Results Floating Box */}
+            <motion.div
+              {...fade(0.5)}
+              className="flex flex-col p-6 rounded-2xl bg-yellow-950/40 border border-yellow-500/30 backdrop-blur-md w-full text-left shadow-[0_0_30px_rgba(234,179,8,0.15)] transition-all hover:bg-yellow-900/40 hover:border-yellow-400/50"
+            >
+              <div className="inline-flex items-center gap-2 text-[10px] font-bold tracking-widest text-yellow-400 uppercase mb-2">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-yellow-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-yellow-500"></span>
+                </span>
+                New Update
+              </div>
+              <h3 className="text-sm font-bold text-yellow-400 mb-2">Round 2 results announced</h3>
+              <p className="text-xs text-white/70 mb-4 leading-relaxed">Check if your team made it to the final phase.</p>
+              <Button asChild size="sm" className="w-full bg-yellow-500 hover:bg-yellow-400 text-black border-none transition-all text-xs font-bold rounded-full h-9 shadow-[0_0_15px_rgba(234,179,8,0.4)] hover:shadow-[0_0_25px_rgba(234,179,8,0.6)]">
+                <Link href="/hackathon/round2-results">
+                  View Results
+                </Link>
+              </Button>
+            </motion.div>
+
+            {/* Round 1 Results Floating Box */}
+            <motion.div
+              {...fade(0.6)}
+              className="flex flex-col p-6 rounded-2xl bg-cyan-950/40 border border-cyan-500/30 backdrop-blur-md w-full text-left shadow-[0_0_30px_rgba(34,211,238,0.15)] transition-all hover:bg-cyan-900/40 hover:border-cyan-400/50"
+            >
+              <h3 className="text-sm font-bold text-white mb-2">Round 1 results announced</h3>
+              <p className="text-xs text-white/70 mb-4 leading-relaxed">Check if your team made it to the next phase.</p>
+              <Button asChild size="sm" className="w-full bg-cyan-500 hover:bg-cyan-400 text-black border-none transition-all text-xs font-bold rounded-full h-9 shadow-[0_0_15px_rgba(34,211,238,0.4)] hover:shadow-[0_0_25px_rgba(34,211,238,0.6)]">
+                <Link href="/hackathon/results">
+                  View Results
+                </Link>
+              </Button>
+            </motion.div>
+          </div>
 
           {/* DevsBazaar Floating Box */}
           <motion.div
