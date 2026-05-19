@@ -44,7 +44,7 @@ function CountdownTimer({ targetDate }: { targetDate: string }) {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
     const target = new Date(targetDate).getTime();
-    const end = target + 2 * 24 * 60 * 60 * 1000; // 2 days later
+    const end = target + 36 * 60 * 60 * 1000; // 36 hours later
 
     const updateTime = () => {
       const now = new Date().getTime();
@@ -392,18 +392,32 @@ export default function HackathonPage() {
           {/* Notifications Container */}
           <div className="flex flex-col gap-4 mt-4 lg:mt-0 lg:absolute lg:bottom-8 lg:left-8 w-full max-w-[300px] lg:max-w-[260px] z-20">
             
+            {/* Final Results Floating Box */}
+            <motion.div
+              {...fade(0.4)}
+              className="flex flex-col p-6 rounded-2xl bg-emerald-950/40 border border-emerald-500/30 backdrop-blur-md w-full text-left shadow-[0_0_30px_rgba(16,185,129,0.15)] transition-all hover:bg-emerald-900/40 hover:border-emerald-400/50"
+            >
+              <div className="inline-flex items-center gap-2 text-[10px] font-bold tracking-widest text-emerald-400 uppercase mb-2">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                </span>
+                Grand Finale Update
+              </div>
+              <h3 className="text-sm font-bold text-emerald-400 mb-2">Final results announced</h3>
+              <p className="text-xs text-white/70 mb-4 leading-relaxed">The ultimate winners of Decode2Deploy have been revealed!</p>
+              <Button asChild size="sm" className="w-full bg-emerald-500 hover:bg-emerald-400 text-black border-none transition-all text-xs font-bold rounded-full h-9 shadow-[0_0_15px_rgba(16,185,129,0.4)] hover:shadow-[0_0_25px_rgba(16,185,129,0.6)]">
+                <Link href="/hackathon/final-results">
+                  View Final Results
+                </Link>
+              </Button>
+            </motion.div>
+
             {/* Round 2 Results Floating Box */}
             <motion.div
               {...fade(0.5)}
               className="flex flex-col p-6 rounded-2xl bg-yellow-950/40 border border-yellow-500/30 backdrop-blur-md w-full text-left shadow-[0_0_30px_rgba(234,179,8,0.15)] transition-all hover:bg-yellow-900/40 hover:border-yellow-400/50"
             >
-              <div className="inline-flex items-center gap-2 text-[10px] font-bold tracking-widest text-yellow-400 uppercase mb-2">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-yellow-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-yellow-500"></span>
-                </span>
-                New Update
-              </div>
               <h3 className="text-sm font-bold text-yellow-400 mb-2">Round 2 results announced</h3>
               <p className="text-xs text-white/70 mb-4 leading-relaxed">Check if your team made it to the final phase.</p>
               <Button asChild size="sm" className="w-full bg-yellow-500 hover:bg-yellow-400 text-black border-none transition-all text-xs font-bold rounded-full h-9 shadow-[0_0_15px_rgba(234,179,8,0.4)] hover:shadow-[0_0_25px_rgba(234,179,8,0.6)]">
